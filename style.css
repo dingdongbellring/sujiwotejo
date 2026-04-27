@@ -247,13 +247,6 @@ nav {
   object-fit: cover;
 }
 
-.roles {
-  font-size: 1rem;
-  color: var(--muted);
-  font-style: italic;
-  margin-bottom: 1.5rem;
-}
-
 /* ── CONTACT PAGE ── */
 .contact-wrap {
   max-width: 600px;
