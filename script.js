@@ -139,6 +139,7 @@
   const invite = document.querySelector('.invite');
   const audio = document.querySelector('audio');
   const QUIET = 0.04, LOUD = 0.9;
+  const START_AT = 24; // seconds into the song, also where each repeat begins
   let started = false; // nothing happens until the circle is clicked
   let audioCtx = null, gain = null;
   let energy = 0; // 0..1, how much movement there has been lately
@@ -157,9 +158,20 @@
       audioCtx = true;
       audio.volume = QUIET;
     }
-    audio.play().catch(() => {});
+    playFrom(START_AT);
     invite.classList.add('is-playing');
   }
+
+  function playFrom(t) {
+    const seekAndPlay = () => { audio.currentTime = t; audio.play().catch(() => {}); };
+    if (audio.readyState >= 1) seekAndPlay();
+    else {
+      audio.addEventListener('loadedmetadata', () => { audio.currentTime = t; }, { once: true });
+      audio.play().catch(() => {});
+    }
+  }
+
+  audio.addEventListener('ended', () => playFrom(START_AT));
 
   function updateVolume(dt) {
     energy *= Math.pow(0.2, dt); // fades back to quiet within a few seconds of stillness
