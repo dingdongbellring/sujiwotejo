@@ -24,7 +24,7 @@ canvas {
 
 /* blurred so the shapes read as shadows thrown on the kelir */
 #shadows { filter: blur(22px); }
-#words { filter: blur(1.4px); }
+#words { filter: blur(0.3px); }
 
 .sr-only {
   position: absolute;
@@ -40,8 +40,7 @@ canvas {
   inset: 0;
   display: grid;
   place-items: center;
-  font-family: 'Fraunces', Georgia, serif;
-  font-style: italic;
+  font-family: 'EB Garamond', Georgia, serif;
   font-size: clamp(2.5rem, 10vw, 7rem);
 }
 
