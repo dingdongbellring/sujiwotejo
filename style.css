@@ -44,6 +44,56 @@ canvas {
   font-size: clamp(2.5rem, 10vw, 7rem);
 }
 
+/* pulsing invitation to start the sound */
+.invite {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: opacity 1.2s;
+}
+
+.invite::before,
+.invite::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.invite::before { animation: breathe 2.4s ease-in-out infinite; }
+.invite::after { animation: ripple 2.4s ease-out infinite; }
+
+.invite:focus-visible { outline: 1px solid #fff; outline-offset: 2px; }
+
+.invite.is-playing { opacity: 0; pointer-events: none; }
+
+@keyframes breathe {
+  50% { transform: scale(1.25); }
+}
+
+@keyframes ripple {
+  from { transform: scale(1); opacity: 0.6; }
+  to { transform: scale(4); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invite::before, .invite::after { animation: none; }
+  .invite::after { transform: scale(2.2); opacity: 0.25; }
+}
+
 footer {
   position: fixed;
   left: 0;

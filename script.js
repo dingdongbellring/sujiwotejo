@@ -133,6 +133,48 @@
     });
   }
 
+  // ── Sound ──────────────────────────────────────────────────────
+  // Browsers only allow sound after a click or tap. Once started, the
+  // song stays barely audible and swells while the shadows are moving.
+  const invite = document.querySelector('.invite');
+  const audio = document.querySelector('audio');
+  const QUIET = 0.04, LOUD = 0.9;
+  let audioCtx = null, gain = null;
+  let energy = 0; // 0..1, how much movement there has been lately
+
+  function startSound() {
+    if (audioCtx) return;
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if (Ctx) {
+      audioCtx = new Ctx();
+      gain = audioCtx.createGain();
+      gain.gain.value = QUIET;
+      audioCtx.createMediaElementSource(audio).connect(gain).connect(audioCtx.destination);
+      audioCtx.resume();
+    } else {
+      audioCtx = true;
+      audio.volume = QUIET;
+    }
+    audio.play().catch(() => {});
+    invite.classList.add('is-playing');
+  }
+
+  function updateVolume(dt) {
+    energy *= Math.pow(0.2, dt); // fades back to quiet within a few seconds of stillness
+    if (!audioCtx) return;
+    const level = QUIET + (LOUD - QUIET) * energy;
+    if (gain) gain.gain.setTargetAtTime(level, audioCtx.currentTime, 0.25);
+    else audio.volume = level;
+  }
+
+  addEventListener('click', startSound);
+  addEventListener('keydown', startSound);
+  document.addEventListener('visibilitychange', () => {
+    if (!audioCtx) return;
+    if (document.hidden) audio.pause();
+    else audio.play().catch(() => {});
+  });
+
   // ── Input ──────────────────────────────────────────────────────
   let px = null, py = null;
   let spawnAcc = 0;
@@ -153,6 +195,7 @@
       spawn(px + dx * t, py + dy * t, dx, dy);
     }
 
+    energy = Math.min(1, energy + d / 1000);
     px = x; py = y;
   }
 
@@ -178,6 +221,7 @@
     last = now;
     const f = dt * 60;
     drawShadows(f);
+    updateVolume(dt);
     requestAnimationFrame(frame);
   }
 
