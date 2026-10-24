@@ -2,75 +2,47 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sujiwo Tejo | Javanese Shadow Puppetmaster</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Sujiwo Tejo | President Jancukers</title>
   <meta name="description" content="Dalang Kontemporer dan President Jancukers — Sujiwo Tejo, Javanese shadow puppetmaster, poet, composer, and artist.">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:title" content="Sujiwo Tejo | President Jancukers">
+  <meta property="og:description" content="Dalang Kontemporer dan President Jancukers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500&family=Instrument+Sans:wght@400;500&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="nav-logo">Sujiwo Tejo</a>
-    <div class="nav-links">
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </nav>
+  <h1 class="sr-only">Sujiwo Tejo — President Jancukers</h1>
 
-  <!-- HERO -->
-  <section class="hero">
-    <img src="images/Tupai.jpg" alt="Sujiwo Tejo" loading="eager">
-    <div class="hero-overlay">
-      <h1>Dalang Kontemporer dan President Jancukers</h1>
-    </div>
-  </section>
+  <canvas id="shadows" aria-hidden="true"></canvas>
+  <canvas id="words" aria-hidden="true"></canvas>
 
-  <!-- SPLIT: photo + gamelan text -->
-  <section class="split">
-    <div class="split-img">
-      <img src="images/hero2.png" alt="Sujiwo Tejo">
-    </div>
-    <div class="split-text">
-      <h2>Masa Depan Indonesia Ada di Belakang</h2>
-      <p>The future of Indonesian music is in the gamelan. But where is the gamelan?</p>
-      <p>Since my first album, so many people have asked me why I did not use the gamelan in <em>'Titi Kolo Mongso'</em>. And the big question from each potential sponsor here is 'where is the gamelan for ethnic music?'. I am tired of answering that my software of gamelan, the spirit of gamelan, will be there without needing the physic of gamelan.</p>
-      <p>I was born in gamelan. Gamelan is a unity in my blood, so I don't need to show off bringing the gamelan physically to the modern orchestra. Everything that I touch, whether it is the saxophone, violin etc, will always consist of the gamelan spirit, even my vocals when I sing music from abroad.</p>
-      <p>I said I differ to… those Indonesian musicians who learnt from the foundation of Western music… and so they need the gamelan physically when making 'ethnic' music.</p>
-    </div>
-  </section>
+  <noscript><p class="noscript">Sujiwo Tejo</p></noscript>
 
-  <!-- SOCIAL GRID -->
-  <section class="social-section">
-    <h2>Sosmed &amp; Streaming Cuk!</h2>
-    <div class="social-grid">
-      <div class="social-card">
-        <img src="images/about1.png" alt="Instagram">
-        <a href="https://www.instagram.com/president_jancukers/" target="_blank" rel="noopener" class="social-btn">Instagram</a>
-      </div>
-      <div class="social-card">
-        <img src="images/about2.png" alt="YouTube">
-        <a href="https://www.youtube.com/@SujiwoTejo_PresidentJancukers" target="_blank" rel="noopener" class="social-btn">YouTube</a>
-      </div>
-      <div class="social-card">
-        <img src="images/about3.png" alt="X / Twitter">
-        <a href="https://x.com/sudjiwotedjo" target="_blank" rel="noopener" class="social-btn">X / Twitter</a>
-      </div>
-      <div class="social-card">
-        <img src="images/spotify-album.jpg" alt="Spotify">
-        <a href="https://open.spotify.com/album/1lGrfg0Yd7iJOjiaB1ZyHG?si=fac8DmwNQrSKTdSQefo1yQ" target="_blank" rel="noopener" class="social-btn">Spotify</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER STRIP -->
-  <footer class="footer-strip">
-    <span class="tagline">Duduk manis di…</span>
-    <div class="footer-contact">
-      <div class="label">Contact</div>
-      <p><a href="mailto:purpala001@gmail.com">purpala001@gmail.com</a></p>
-      <p><a href="tel:+628564067900">(62) 856-4067-7900</a></p>
-    </div>
+  <footer>
+    <nav class="social" aria-label="Social media">
+      <a href="https://www.instagram.com/president_jancukers/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@SujiwoTejo_PresidentJancukers" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a href="https://x.com/sudjiwotedjo" target="_blank" rel="noopener" aria-label="X (Twitter)">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+      </a>
+      <a href="https://open.spotify.com/artist/7ddWGwkeDMoP28V9jKxkxv?si=oco6dfQuQGiIY-ARhWsfpA" target="_blank" rel="noopener" aria-label="Spotify">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="currentColor"/><g fill="none" stroke="#000" stroke-linecap="round"><path d="M6 9.2c4-1.2 8.6-.8 12.2 1.2" stroke-width="2"/><path d="M6.6 12.7c3.3-.9 7-.5 9.9 1.1" stroke-width="1.7"/><path d="M7.2 15.9c2.6-.7 5.4-.4 7.7.9" stroke-width="1.4"/></g></svg>
+      </a>
+    </nav>
+    <address class="contact">
+      <a href="mailto:purpala001@gmail.com">purpala001@gmail.com</a>
+      <a href="tel:+6285640677900">(62) 856-4067-7900</a>
+    </address>
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
