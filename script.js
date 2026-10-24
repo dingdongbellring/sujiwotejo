@@ -139,11 +139,13 @@
   const invite = document.querySelector('.invite');
   const audio = document.querySelector('audio');
   const QUIET = 0.04, LOUD = 0.9;
+  let started = false; // nothing happens until the circle is clicked
   let audioCtx = null, gain = null;
   let energy = 0; // 0..1, how much movement there has been lately
 
-  function startSound() {
-    if (audioCtx) return;
+  function start() {
+    if (started) return;
+    started = true;
     const Ctx = window.AudioContext || window.webkitAudioContext;
     if (Ctx) {
       audioCtx = new Ctx();
@@ -167,8 +169,7 @@
     else audio.volume = level;
   }
 
-  addEventListener('click', startSound);
-  addEventListener('keydown', startSound);
+  invite.addEventListener('click', start);
   document.addEventListener('visibilitychange', () => {
     if (!audioCtx) return;
     if (document.hidden) audio.pause();
@@ -180,6 +181,7 @@
   let spawnAcc = 0;
 
   function moveTo(x, y) {
+    if (!started) return;
     if (px === null) { px = x; py = y; return; }
     const dx = x - px, dy = y - py;
     const d = Math.hypot(dx, dy);
@@ -207,6 +209,7 @@
 
   addEventListener('pointermove', onPointer, { passive: true });
   addEventListener('pointerdown', (e) => {
+    if (!started) return;
     px = e.clientX; py = e.clientY;
     for (let i = 0; i < 3; i++) spawn(px, py, rand(-10, 10), rand(-10, 10));
   }, { passive: true });
